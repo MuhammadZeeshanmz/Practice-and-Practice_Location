@@ -24,4 +24,5 @@ class PracticeLocation extends Model
         'state',
         'zip',
     ];
+    
 }
