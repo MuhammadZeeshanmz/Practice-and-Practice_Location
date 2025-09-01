@@ -171,4 +171,12 @@ class PracticeService
         return $practice;
 
     }
+    public function filter($request){
+        $name = $request->name;
+
+        $filter = Practice::quer()
+        ->when($name, fn($q) => $q->where('name', $name))->get();
+        return $filter;
+
+    }
 }

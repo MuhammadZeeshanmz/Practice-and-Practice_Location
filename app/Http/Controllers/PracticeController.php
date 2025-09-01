@@ -41,9 +41,14 @@ class PracticeController extends Controller
         $data = $this->practiceService->accessed();
         return $data;
     }
+    public function filter($request){
+        $query = $this->practiceService->filter($request);
+        return $query;
+    }
     public function show($id){
         $query = Practice::with(['locations', 'notes', 'alerts'])->findOrFail($id);
         return $query;
     }
+
 }
 
