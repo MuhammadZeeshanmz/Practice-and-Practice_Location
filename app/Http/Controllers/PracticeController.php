@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\PracticeResource;
 use App\Models\Practice;
 use App\Services\PracticeService;
 use Illuminate\Http\Request;
@@ -47,7 +48,7 @@ class PracticeController extends Controller
     }
     public function show($id){
         $query = Practice::with(['locations', 'notes', 'alerts'])->findOrFail($id);
-        return $query;
+        return new PracticeResource($query);
     }
 
 }
