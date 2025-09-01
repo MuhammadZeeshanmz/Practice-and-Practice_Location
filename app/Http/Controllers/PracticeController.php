@@ -37,6 +37,10 @@ class PracticeController extends Controller
         $query = Practice::findOrFail($id);
         $query->delete();
     }
+    public function recentlyaccessed(){
+        $data = $this->practiceService->accessed();
+        return $data;
+    }
     public function show($id){
         $query = Practice::with(['locations', 'notes', 'alerts'])->findOrFail($id);
         return $query;

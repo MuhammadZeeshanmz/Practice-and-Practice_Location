@@ -164,4 +164,11 @@ class PracticeService
             return $th;
         }
     }
+    public function accessed(){
+        $practice = Practice::orderBy('recently_accessed', 'desc')
+        ->take(5)
+        ->get();
+        return $practice;
+
+    }
 }
