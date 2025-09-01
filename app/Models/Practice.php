@@ -45,5 +45,12 @@ class Practice extends Model
     {
         return $this->hasMany(PracticeLocation::class, 'practice_id');
     }
+    public function notes(){
+        return $this->hasMany(Note::class, 'model_id');
+    }
+
+    public function alerts(){
+        return $this->hasMany(Alert::class, 'model_id');
+    }
 
 }

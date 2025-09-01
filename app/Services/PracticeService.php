@@ -2,6 +2,8 @@
 
 namespace App\Services;
 
+use App\Models\Alert;
+use App\Models\Note;
 use App\Models\Practice;
 use App\Models\PracticeLocation;
 
@@ -54,6 +56,26 @@ class PracticeService
 
 
             ]);
+              if(!empty($request->notes)){
+                foreach($request->notes as $note){
+                    $practiceNote = Note::create([
+                        'model_id' => $practice['id'],
+                        'note' => $note['note'],
+                    ]);
+            }
+        }
+        if(!empty($request->alerts)){
+            foreach($request->alerts as $alert){
+                $practiceAlert = Alert::create([
+                    'model_id' => $practice['id'],
+                    'title' => $alert['title'],
+                    'description'=> $alert['description'],
+
+
+                ]);
+
+            }
+        }
             $this->locations($request, $practice);
             return $practice;
         } catch (\Throwable $th) {
@@ -135,6 +157,7 @@ class PracticeService
                 'zip' => $practice->zip,
                 'npi_code' => $practice->npi_code,
             ]);
+          
             $this->locations($request, $practice);
             return $practice;
         } catch (\Throwable $th) {

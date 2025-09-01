@@ -38,7 +38,7 @@ class PracticeController extends Controller
         $query->delete();
     }
     public function show($id){
-        $query = Practice::with('locations')->findOrFail($id);
+        $query = Practice::with(['locations', 'notes', 'alerts'])->findOrFail($id);
         return $query;
     }
 }
